@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 
-from core.arpspoof import spoofing, getmac
-from core.dnsspoof import process_packet, modify
-from core.dump import scanner
 from core.httpserver import MyHandler, openfile
-from core.sniffer import sniff
 from core.banner import *
 from core.begin import *
 from threading import Thread
