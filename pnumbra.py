@@ -217,5 +217,6 @@ if __name__ == "__main__":
         print(f"{RED}{NOW}{RESET} Program Terminated")
         warn("Exiting ..")
         clear_rules()
+        reset()
         
         

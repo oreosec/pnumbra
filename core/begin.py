@@ -4,6 +4,7 @@ from colorama import init, Fore
 from subprocess import PIPE, DEVNULL, Popen, check_output, STDOUT
 import getpass
 from .banner import *
+import os
 
 def execute_commands(commands):
     for command in commands:
@@ -51,6 +52,13 @@ def nat(out, masuk):
 		'iptables --append FORWARD --in-interface ' +masuk+ ' --out-interface ' +out+ ' -j ACCEPT'
     ])
 
+def reset():
+    ls = os.listdir("config")
+    if "dnsmasq.conf" in ls:
+        os.remove("dnsmasq.conf")
+    if "hostapd.conf" in ls:
+        os.remove("hostapd.conf")
+        
 def redirect_localhost():
 
 	execute_commands([
