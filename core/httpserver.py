@@ -11,9 +11,10 @@ import time
 import datetime
 
 class MyHandler(BaseHTTPRequestHandler):
-    def __init__(self, getresp, postresp, *args, **kwargs):
+    def __init__(self, getresp, postresp, auto_exit, *args, **kwargs):
         self.getresp = getresp
         self.postresp = postresp
+        self.auto_exit = auto_exit
         super().__init__(*args, **kwargs)
 
 
@@ -53,6 +54,8 @@ class MyHandler(BaseHTTPRequestHandler):
         self.writefile(data)
         file = openfile(self.postresp)
         self.wfile.write(bytes(file, "utf-8"))
+        if self.auto_exit:
+            raise(KeyboardInterrupt)
 
     def writefile(self, data):
         if not os.path.exists("result"):

