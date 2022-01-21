@@ -1,2 +1,2 @@
 # pnumbra
-Wireless Evil Twin with Python code
+Wireless Evil Twin
